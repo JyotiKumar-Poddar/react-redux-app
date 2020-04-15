@@ -5,7 +5,7 @@ import AboutPage from "./about/AboutPage";
 import Header from "./common/Header";
 import PageNotFound from "./PageNotFound";
 import CoursesPage from "./courses/CoursesPage";
-import Footer from './Footer'
+import Footer from './common/Footer'
 
 function App() {
   return (
