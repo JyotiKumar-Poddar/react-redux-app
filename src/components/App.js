@@ -5,6 +5,7 @@ import AboutPage from "./about/AboutPage";
 import Header from "./common/Header";
 import PageNotFound from "./PageNotFound";
 import CoursesPage from "./courses/CoursesPage";
+import Footer from './Footer'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/courses" component={CoursesPage} />
         <Route component={PageNotFound} />
       </Switch>
+      <Footer />
     </div>
   );
 }
