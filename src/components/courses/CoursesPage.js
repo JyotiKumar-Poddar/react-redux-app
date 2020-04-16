@@ -1,4 +1,7 @@
 import React from "react";
+import { connect } from 'react-redux';
+import * as COURSE_ACTION from '../../redux/actions/coursesActions';
+import PropTypes from 'prop-types'
 
 class CoursesPage extends React.Component {
   state = {
@@ -11,10 +14,14 @@ class CoursesPage extends React.Component {
     this.setState({ course: course });
     //or  this.setState({ course });
   }
+  hadleSubmit = (event) => {
+    event.preventDefault();
+    this.props.dispatch(COURSE_ACTION.createCourse(this.state.course));
+  }
 
   render() {
     return (
-      <form>
+      <form name='course' onSubmit={this.hadleSubmit}>
         <h2>Course</h2>
         <h3>Add courses</h3>
         <input type='text' onChange={this.handleChange}
@@ -25,4 +32,13 @@ class CoursesPage extends React.Component {
   }
 }
 
-export default CoursesPage;
+CoursesPage.PropTypes = {
+  dispatch: PropTypes.func.isRequired
+};
+
+function mapStateToProps(state) {
+  return {
+    course: state.course
+  };
+}
+export default connect(mapStateToProps)(CoursesPage);
