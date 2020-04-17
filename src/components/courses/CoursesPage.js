@@ -28,12 +28,9 @@ class CoursesPage extends React.Component {
           value={this.state.course.title} />
         <input className='btn btn-primary' type='submit' value="Save" />
         <p> Saved Courses </p>
-        {this.props.courses.map(course => {
-          return (
-            <div key={course.title} >{course.title}</div>
-          );
-        })
-        }
+        {this.props.courses.map(course =>
+          <div key={course.title} >{course.title}</div>
+        )}
       </form >
     );
   }
