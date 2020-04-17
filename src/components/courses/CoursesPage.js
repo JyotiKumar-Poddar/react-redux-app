@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from 'react-redux';
 import * as COURSE_ACTION from '../../redux/actions/courseActions';
 import PropTypes from 'prop-types'
+import { bindActionCreators } from 'redux'
 class CoursesPage extends React.Component {
   state = {
     course: {
@@ -15,7 +16,7 @@ class CoursesPage extends React.Component {
   }
   hadleSubmit = (event) => {
     event.preventDefault();
-    this.props.createCourseAction(this.state.course);
+    this.props.dispatchedActions.createCourse(this.state.course);
   }
 
   render() {
@@ -40,7 +41,7 @@ class CoursesPage extends React.Component {
 
 CoursesPage.propTypes = {
   courses: PropTypes.array.isRequired,
-  createCourseAction: PropTypes.object.isRequired
+  dispatchedActions: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state) {
@@ -48,23 +49,10 @@ function mapStateToProps(state) {
     courses: state.courses
   };
 }
-
-/*function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     dispatchedActions: bindActionCreators(COURSE_ACTION, dispatch)
   };
-}*/
-
-/* 
-By using object instead of function the binding to action is
-done automatically based on the action defined in the courseActions class
-but the action must be presents in it.
-
-In this apporach each time a new action is added the realted chages also required here. 
-*/
-const mapDispatchToProps = {
-  createCourseAction: COURSE_ACTION.createCourse
 }
-
 export default connect(mapStateToProps, mapDispatchToProps)(CoursesPage);
 
