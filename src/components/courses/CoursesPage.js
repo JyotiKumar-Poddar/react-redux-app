@@ -16,7 +16,7 @@ class CoursesPage extends React.Component {
   }
   hadleSubmit = (event) => {
     event.preventDefault();
-    this.props.dispatch(COURSE_ACTION.createCourse(this.state.course));
+    this.props.dispatchedAction(this.state.course);
   }
 
   render() {
@@ -41,7 +41,7 @@ class CoursesPage extends React.Component {
 
 CoursesPage.propTypes = {
   courses: PropTypes.array.isRequired,
-  dispatch: PropTypes.func.isRequired
+  dispatchedAction: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state) {
@@ -49,4 +49,10 @@ function mapStateToProps(state) {
     courses: state.courses
   };
 }
-export default connect(mapStateToProps)(CoursesPage);
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatchedAction: course => dispatch(COURSE_ACTION.createCourse(course))
+  };
+}
+export default connect(mapStateToProps, mapDispatchToProps)(CoursesPage);
+
