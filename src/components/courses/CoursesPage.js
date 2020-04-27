@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import * as COURSE_ACTION from '../../redux/actions/courseActions';
 import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
+import CourseList from './CourseList'
 class CoursesPage extends React.Component {
 
   componentDidMount() {
-    console.log(this.props);
     this.props.actions.loadCourses().catch(error => {
-      console.log("error in loading ", error);
+      console.log("error in loading", error);
     });
   }
 
@@ -16,9 +16,7 @@ class CoursesPage extends React.Component {
     return (
       <>
         <h2>Courses </h2>
-        {this.props.courses.map(course =>
-          <div key={course.title} >{course.title}</div>
-        )}
+        <CourseList courses={this.props.courses} />
       </>
     );
   }
